@@ -30,19 +30,18 @@ const projected = (options) => {
 const url = (options) => {
   let query = options.queryTemplate
   const coordinate = proj4(options.inputProjection, options.dataProjection, options.coordinate)
-  query = query.replace(new RegExp('\\$\\{layer\\}', 'g'), options.layer)
-  query = query.replace(new RegExp('\\$\\{geometryColumn\\}', 'g'), options.geometryColumn)
-  query = query.replace(new RegExp('\\$\\{outputProjection\\}', 'g'), options.outputProjection)
-  query = query.replace(new RegExp('\\$\\{x\\}', 'g'), coordinate[0])
-  query = query.replace(new RegExp('\\$\\{y\\}', 'g'), coordinate[1])
+  query = query.replace(/\$\{layer\}/g, options.layer)
+  query = query.replace(/\$\{geometryColumn\}/g, options.geometryColumn)
+  query = query.replace(/\$\{outputProjection\}/g, options.outputProjection)
+  query = query.replace(/\$\{x\}/g, coordinate[0])
+  query = query.replace(/\$\{y\}/g, coordinate[1])
   return `${options.wfsEndpoint}?${query}`
 }
 
 module.exports = (options) => {
   defaults(options)
-  const wfsUrl = url(options)
   return new Promise((resolve, reject) => {
-    fetch(wfsUrl).then(response => {
+    fetch(url(options)).then(response => {
       response.json().then(features => {
         resolve(features)
       }).catch(error => {
