@@ -20,14 +20,21 @@ const defaults = (options) => {
   options.outputProjection = options.outputProjection || DEFAULT_PROJ
 }
 
+const projected = (options) => {
+  if (options.inputProjection !== options.dataProjection) {
+    return proj4(options.inputProjection, options.dataProjection, options.coordinate)
+  }
+  return options.coordinate
+}
+
 const url = (options) => {
   let query = options.queryTemplate
-  const projected = proj4(options.inputProjection, options.dataProjection, options.coordinate)
+  const coordinate = proj4(options.inputProjection, options.dataProjection, options.coordinate)
   query = query.replace(new RegExp('\\$\\{layer\\}', 'g'), options.layer)
   query = query.replace(new RegExp('\\$\\{geometryColumn\\}', 'g'), options.geometryColumn)
   query = query.replace(new RegExp('\\$\\{outputProjection\\}', 'g'), options.outputProjection)
-  query = query.replace(new RegExp('\\$\\{x\\}', 'g'), projected[0])
-  query = query.replace(new RegExp('\\$\\{y\\}', 'g'), projected[1])
+  query = query.replace(new RegExp('\\$\\{x\\}', 'g'), coordinate[0])
+  query = query.replace(new RegExp('\\$\\{y\\}', 'g'), coordinate[1])
   return `${options.wfsEndpoint}?${query}`
 }
 
