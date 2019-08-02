@@ -15,6 +15,7 @@ const options = (options) => {
 const url = (coordinate, options) => {
   let query = options.queryTemplate
   const projected = proj4(options.inputProjection, options.dataProjection, coordinate)
+  query = query.replace(new RegExp('\\$\\{layer\\}', 'g'), options.layer)
   query = query.replace(new RegExp('\\$\\{x\\}', 'g'), projected[0])
   query = query.replace(new RegExp('\\$\\{y\\}', 'g'), projected[1])
   return `${options.wfsEndpoint}?${query}`
