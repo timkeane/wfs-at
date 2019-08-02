@@ -1,7 +1,12 @@
+import proj4 from 'proj4'
+
 const DEFAULT_QRY = 'service=WFS&version=2.0.0&request=GetFeature&typeNames=${layer}&outputFormat=application/json&cql_filter=INTERSECTS(${geomColumn},POINT(${x} ${y}))'
 const DEFAULT_PROJ = 'EPSG:3857'
 
 const options = (options) => {
+  if (!options.wfsEndpoint) {
+    throw 'options must contain a wfsEnpoint'
+  }
   options.queryTemplate = options.queryTemplate || DEFAULT_QRY
   options.inputProjection = options.inputProjection || DEFAULT_PROJ
   options.dataProjection = options.dataProjection || DEFAULT_PROJ
