@@ -19,11 +19,11 @@
   "homepage": "https://github.com/timkeane/wfs-at#readme",
   "dependencies": {
     "dotenv": "^6.0.0",
+    "node-fetch": "^2.6.0",
     "proj4": "^2.4.4"
   },
   "devDependencies": {
     "coveralls": "^3.0.2",
-    "isomorphic-fetch": "^2.2.1",
     "jest": "^24.8.0"
   },
   "jest": {
