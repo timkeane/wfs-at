@@ -1,0 +1,46 @@
+{
+  "name": "wfs-at",
+  "version": "0.0.1",
+  "description": "Make a WFS request that uses a coordinate and return GeoJSON object",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timkeane/wfs-at.git"
+  },
+  "author": "Tim Keane",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/timkeane/wfs-at/issues"
+  },
+  "homepage": "https://github.com/timkeane/wfs-at#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "proj4": "^2.4.4"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.2",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^24.8.0"
+  },
+  "jest": {
+    "verbose": true,
+    "automock": false,
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/",
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/coverage/",
+      "__tests__"
+    ]
+  }
+}
