@@ -19,7 +19,7 @@
   "homepage": "https://github.com/timkeane/wfs-at#readme",
   "dependencies": {
     "dotenv": "^6.0.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "proj4": "^2.4.4"
   },
   "devDependencies": {
